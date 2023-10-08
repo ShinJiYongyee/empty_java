@@ -3,6 +3,7 @@ import java.util.Scanner;
 class Circle{
     private double x,y;
     private int radius;
+
     public Circle(double x,double y,int radius){
         this.x=x;
         this.y=y;
@@ -10,6 +11,9 @@ class Circle{
     }
     public void show(){
         System.out.println("("+x+","+y+")"+radius);
+    }
+    public int getRadius(){
+        return radius;
     }
 }
 
@@ -24,7 +28,13 @@ public class Empty {
             int radius=input.nextInt();
             c[i]= new Circle(x,y,radius);
         }
-        for(int i=0;i<c.length;i++) c[i].show();
+        Circle biggestCircle=c[0];
+        for(int i=1;i<3;i++){
+            if(biggestCircle.getRadius()<c[i].getRadius())
+                biggestCircle=c[i];
+        }
+        System.out.print("가장 큰 원은 ");
+        biggestCircle.show();
         input.close();
     }
 }
