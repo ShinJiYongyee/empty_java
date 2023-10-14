@@ -1,65 +1,31 @@
-import java.util.Scanner;
-
-abstract class Converter{
-    abstract protected double convert(double src);
-    abstract protected String getSrcString();
-    abstract protected String getDestString();
-    protected double radio;
-
-    public void run(){
-        Scanner input=new Scanner(System.in);
-        System.out.println(getSrcString()+"을 "+getDestString()+"로 바꿉니다");
-        System.out.print(getSrcString()+"을 입력하세요>>");
-        double val=input.nextDouble();
-        double res=convert(val);
-        System.out.println("변환 결과: "+res+getDestString()+"입니다");
-        input.close();
-
-    }
+class Point{
+    private int x,y;
+    public Point(int x, int y){this.x=x;this.y=y;}
+    public int getX(){return x;}
+    public int getY(){return y;}
+    protected void move(int x,int y){this.x=x;this.y=y;}
 }
-class Won2Dolllar extends Converter{
 
-    @Override
-    protected double convert(double src) {
-        return src*1/radio;
+class ColorPoint extends Point{
+    String color;
+    public ColorPoint(int x, int y,String color) {
+        super(x, y);
+        this.color=color;
     }
-
-    @Override
-    protected String getSrcString() {
-        return "원";
+    void setXY(int x,int y){
+        super.move(x,y);
     }
-
-    @Override
-    protected String getDestString() {
-        return "달러";
-    }
-    Won2Dolllar(double radio){
-        this.radio=radio;
-    }
-}
-class Km2Mile extends Converter{
-
-    @Override
-    protected double convert(double src) {
-        return src*1/radio;
-    }
-
-    @Override
-    protected String getSrcString() {
-        return "Km";
-    }
-
-    @Override
-    protected String getDestString() {
-        return "mile";
-    }
-    Km2Mile(double radio){
-        this.radio=radio;
+    void setColor(String color){this.color=color;}
+    public String toString(){
+        return color+"색의 "+"("+getX()+","+getY()+")의 점";
     }
 }
 public class Empty {
     public static void main(String[] args) {
-        Km2Mile toMile=new Km2Mile(1.6);
-        toMile.run();
+        ColorPoint cp=new ColorPoint(5,5,"YELLOW");
+        cp.setXY(10,20);
+        cp.setColor("RED");
+        String str=cp.toString();
+        System.out.println(str+"입니다");
     }
 }
