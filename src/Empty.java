@@ -37,9 +37,29 @@ class Won2Dolllar extends Converter{
         this.radio=radio;
     }
 }
+class Km2Mile extends Converter{
+
+    @Override
+    protected double convert(double src) {
+        return src*1/radio;
+    }
+
+    @Override
+    protected String getSrcString() {
+        return "Km";
+    }
+
+    @Override
+    protected String getDestString() {
+        return "mile";
+    }
+    Km2Mile(double radio){
+        this.radio=radio;
+    }
+}
 public class Empty {
     public static void main(String[] args) {
-        Won2Dolllar toDollar=new Won2Dolllar(1200);
-        toDollar.run();
+        Km2Mile toMile=new Km2Mile(1.6);
+        toMile.run();
     }
 }
