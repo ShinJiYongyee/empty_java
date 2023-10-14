@@ -8,9 +8,17 @@ class Point{
 
 class ColorPoint extends Point{
     String color;
+    public ColorPoint(){
+        super(0,0);
+        this.color="BLACK";
+    }
     public ColorPoint(int x, int y,String color) {
         super(x, y);
         this.color=color;
+    }
+    public ColorPoint(int x, int y) {
+        super(x, y);
+        this.color="BLACK";
     }
     void setXY(int x,int y){
         super.move(x,y);
@@ -22,10 +30,12 @@ class ColorPoint extends Point{
 }
 public class Empty {
     public static void main(String[] args) {
-        ColorPoint cp=new ColorPoint(5,5,"YELLOW");
-        cp.setXY(10,20);
+        ColorPoint zeroPoint=new ColorPoint();
+        System.out.println(zeroPoint.toString()+"입니다.");
+
+        ColorPoint cp=new ColorPoint(10,10);
+        cp.setXY(5,5);
         cp.setColor("RED");
-        String str=cp.toString();
-        System.out.println(str+"입니다");
+        System.out.println(cp.toString()+"입니다");
     }
 }
