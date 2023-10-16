@@ -1,19 +1,21 @@
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Empty {
     public static void main(String[] args) {
-        Calendar calendar=Calendar.getInstance();
-        int hour=calendar.get(Calendar.HOUR_OF_DAY);
-        int minute=calendar.get(Calendar.MINUTE);
-        System.out.println("현재 시간은 "+hour+"시 "+minute+"분 입니다.");
-        switch (hour){
-            case 4,5,6,7,8,9,10,11->
-                    System.out.println("Good Morning");
-            case 12,13,14,15,16,17->
-                    System.out.println("Good Afternoon");
-            case 18,19,20,21,22->
-                    System.out.println("Good Evening");
-            default -> System.out.println("Good Night");
+        Scanner input=new Scanner(System.in);
+        System.out.println("문자열을 입력하세요.");
+        String s=input.nextLine();
+        int length=s.length();
+        StringBuffer sb=new StringBuffer(s);
+        char tmp;
+        System.out.println(s);
+        for(int i=0;i<length;i++){
+            tmp=sb.charAt(0);
+            sb.deleteCharAt(0);
+            sb.append(tmp);
+            System.out.println(sb);
+
         }
     }
 }
