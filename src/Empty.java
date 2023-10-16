@@ -1,27 +1,44 @@
+import java.util.Objects;
 
-class MyPoint{
-    int x,y;
-    MyPoint(int x,int y){
+class Circle{
+    int x,y,radius;
+    Circle(int x,int y,int radius){
         this.x=x;
         this.y=y;
+        this.radius=radius;
     }
 
     @Override
     public String toString() {
-        return "Point("+x+","+y+')';
+        return "원 a : " +
+                "Circle(" + x +
+                "," + y +
+                ") 반지름" + radius ;
     }
 
-    public boolean equals(MyPoint obj) {
-        return ((this.x== obj.x)&&(this.y== obj.y));
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Circle circle = (Circle) o;
+        return this.x == circle.x &&
+                this.y == circle.y &&
+                this.radius == circle.radius;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, radius);
     }
 }
 
 public class Empty {
     public static void main(String[] args) {
-        MyPoint p=new MyPoint(3,50);
-        MyPoint q=new MyPoint(4,50);
-        System.out.println(q);
-        if(p.equals(q)) System.out.println("같은 점");
-        else System.out.println("다른 점");
+        Circle a=new Circle(2,3,5);
+        Circle b=new Circle(2,3,30);
+        System.out.println("원 a: "+a);
+        System.out.println("원 b: "+b);
+        if(a.equals(b)) System.out.println("같은 원");
+        else System.out.println("다른 원");
     }
 }
