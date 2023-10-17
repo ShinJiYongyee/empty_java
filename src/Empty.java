@@ -1,15 +1,15 @@
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Scanner;
 
 class Student {
+/*
     String name;
+*/
     String major;
     int id;
     double avg;
 
-    Student(String name, String major, int id, double avg) {
-        this.name = name;
+    Student( String major, int id, double avg) {
         this.major = major;
         this.id = id;
         this.avg = avg;
@@ -17,14 +17,14 @@ class Student {
 
     @Override
     public String toString() {
-        return "이름 : " + name + "\n학과 : " + major +
+        return "학과 : " + major +
                 "\n학번 : " + id + "\n학점평균 : " + avg + "\n";
     }
 }
 
 public class Empty {
     public static void main(String[] args) {
-        var std = new ArrayList<Student>();
+        var std = new HashMap<String,Student>();
         Scanner input = new Scanner(System.in);
         System.out.println("학생 이름, 학과, 학번, 학점평균을 입력하세요");
 
@@ -49,25 +49,19 @@ public class Empty {
             int id = input.nextInt();
             double avg = input.nextDouble();
 
-            Student student = new Student(name, major, id, avg);
-            std.add(student);
+            Student student = new Student(major, id, avg);
+            std.put(name,student);
         }
 
-/*        Iterator<Student> it = std.iterator();
-        while (it.hasNext()) {
-            System.out.println(it.next());
-        }*/
-
-        for (Student student : std) {
-            System.out.println(student);
+        for (HashMap.Entry<String, Student> entry : std.entrySet()) {
+            String key = entry.getKey();
+            Student value = entry.getValue();
+            System.out.println("이름 : " + key + "\n"+value);
         }
-        System.out.print("학생 이름 >> ");
+
+        System.out.print("학생 이름>> ");
         String name= input.next();
+        System.out.println(std.get(name));
 
-        for (Student student : std) {
-            if (name.equals(student.name)) {
-                System.out.println(student);
-            }
-        }
     }
 }
