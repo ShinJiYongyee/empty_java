@@ -1,31 +1,35 @@
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Empty {
     public static void main(String[] args) {
         Scanner input=new Scanner(System.in);
-        System.out.print("6개 학점을 빈 칸으로 분리 입력(A/B/C/D/F)>>");
-        var v=new ArrayList<Character>();
-        for(int i=0;i<6;i++){
-            char a=input.next().charAt(0);
-            v.add(a);
-
+        System.out.print("나라 이름과 인구를 입력하세요(에: Korea 5000)");
+        var v=new HashMap<String,Integer>();
+        System.out.println();
+        while (true){
+            System.out.print("나라 이름, 인구 >> ");
+            String s=input.next();
+            if(s.equals("그만"))break;
+            //int를 읽기 전 s.equals를 수행해야 조건문이 정상적으로 작동
+            //int p~가 if문보다 먼저 올 경우 그만+정수 를 읽어야 break
+            int p=input.nextInt();
+            v.put(s,p);
         }
 
-        Iterator<Character> it=v.iterator();
-        double sum=0;
-        while (it.hasNext()){
-            char a=it.next();
-            if(a=='A')sum+=4.0;
-            if(a=='B')sum+=3.0;
-            if(a=='C')sum+=2.0;
-            if(a=='D')sum+=1.0;
-            if(a=='F')sum+=0.0;
-
+        while (true){
+            System.out.print("인구 검색 >> ");
+            String s=input.next();
+            if(s.equals("그만"))break;
+            if(!v.containsKey(s)) {
+                System.out.println(s+" 나라는 없습니다");
+            }
+            else {
+                int p= v.get(s);
+                System.out.println(s+"의 인구는 "+p);
+            }
         }
-        double avg=sum/6;
-        System.out.println(avg);
+
     }
 
 }
