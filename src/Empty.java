@@ -61,5 +61,13 @@ public class Empty {
         for (Student student : std) {
             System.out.println(student);
         }
+        System.out.print("학생 이름 >> ");
+        String name= input.next();
+
+        for (Student student : std) {
+            if (name.equals(student.name)) {
+                System.out.println(student);
+            }
+        }
     }
 }
