@@ -1,53 +1,31 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-
-class Location{
-
-    int latitude;
-    int longitude;
-    Location(int latitude,int longitude){
-        this.latitude=latitude;
-        this.longitude=longitude;
-    }
-
-    @Override
-    public String toString() {
-        return latitude+"\t"+longitude;
-    }
-}
 
 public class Empty {
     public static void main(String[] args) {
         Scanner input=new Scanner(System.in);
-        var location=new HashMap<String,Location>();
-
-        System.out.print("도시,경도,위도를 입력하세요");
-        System.out.println();
-        for (int i = 0; i < 4; i++) {
-            System.out.print(">>");
-            String s= input.nextLine();
-            String[] parts = s.split(",\\s+");
-            String n = parts[0];
-            int latitude = Integer.parseInt(parts[1]);
-            int longitude = Integer.parseInt(parts[2]);
-            Location l = new Location(latitude, longitude);
-            location.put(n, l);
+        var student=new HashMap<String,Double>();
+        var awarded=new ArrayList<String>();
+        System.out.println("미래장학금관리시스템입니다.");
+        for (int i = 0; i < 5; i++) {
+            System.out.print("이름과 학점>> ");
+            String name=input.next();
+            Double p= input.nextDouble();
+            student.put(name,p);
         }
-        for (Map.Entry<String,Location> entry:location.entrySet()) {
-            String n= entry.getKey();
-            Location s=entry.getValue();
-            System.out.println(n+"\t"+s);
+        System.out.print("장학생 선발 학점 기준 입력>>");
+        double stdpoint= input.nextDouble();
+        for (HashMap.Entry<String, Double> entry : student.entrySet()) {
+            String key = entry.getKey();
+            Double value = entry.getValue();
+            if(value>=stdpoint)awarded.add(key);
 
         }
-        System.out.print("도시 이름 >> ");
-        String find=input.next();
-        if(location.containsKey(find)){
-            Location n=location.get(find);
-            System.out.println(find+"\t"+n);
+        System.out.print("장학생 명단 : ");
+        for (String s:awarded) {
+            System.out.print(s+" ");
         }
-        else System.out.println(find+"는 없습니다.");
-
 
     }
 }
