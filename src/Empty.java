@@ -1,61 +1,38 @@
-import java.util.Scanner;
+class ArrayUtil{
 
-class Phone{
-    String name;
-    String tel;
-    void set(String name,String tel){this.name=name;this.tel=tel;}
+    public static int [] concat(int[] a, int [] b){
+        int [] c=new int[a.length+ b.length];
 
-}
-class PhoneBook{
-    int index;
-    Scanner input=new Scanner(System.in);
-    Phone[] PhoneNumbers;
-    PhoneBook(int index){
-        this.index=index;
-        this.PhoneNumbers=new Phone[index];
-        for(int i=0;i<index;i++){
-            PhoneNumbers[i]=new Phone();
+        //배열 a와 b를 연결한 새로운 배열 리턴
+/*
+        for (int i = 0; i < a.length; i++) {
+            c[i]=a[i];
         }
-    }
-    void input(){
-        for(int i=0;i<index;i++){
-            System.out.print("이름과 전화번호(이름과 번호는 빈 칸없이 입력)>>");
-            String name=input.next();
-            String tel=input.next();
-            PhoneNumbers[i].set(name,tel);
+        for (int i = a.length; i <(a.length+b.length) ; i++) {
+            c[i]=b[i-a.length];
         }
-        System.out.println("저장되었습니다.");
-    }
-    void search(){
-        while (true){
-            System.out.print("검색할 이름>>");
-            String name=input.next();
-            boolean b=false;
-            if(name.equals("그만"))break;
-            for(Phone p:PhoneNumbers){
-                if(p.name.equals(name)){
-                    System.out.println(p.name+"의 번호는"+p.tel+"입니다.");
-                    b=true;
-                }
-            }
-            if(!b)System.out.println(name+" 이 없습니다.");
+*/
 
+        //java에서 지원하는 arraycopy 메소드, arrayUtil.concat과 동일한 기능
+        //System.arraycopy(Object src, int srcPos, Object dest, int destPos, int length);
+        System.arraycopy(a, 0, c, 0, a.length);
+        System.arraycopy(b, 0, c, a.length,  b.length );
+        return c;
+    }
+    public static void print(int[] a){
+        System.out.print("[");
+        //배열 a 출력
+        for (int j : a) {
+            System.out.print(j + " ");
         }
+        System.out.print("]");
     }
-    void run(){
-        input();
-        search();
-        input.close();
-    }
-
-
 }
 public class Empty {
     public static void main(String[] args) {
-        Scanner input=new Scanner(System.in);
-        System.out.print("인원수>>");
-        int n=input.nextInt();
-        var p=new PhoneBook(n);
-        p.run();
+        int[] array1={1,5,7,9};
+        int[] array2={3,6,-1,100,77};
+        int[] array3=ArrayUtil.concat(array1,array2);
+        ArrayUtil.print(array3);
     }
 }
